@@ -17,6 +17,7 @@
     "@hapi/joi-date": "^2.0.1",
     "@hapi/vision": "^5.5.4",
     "axios": "^0.19.0",
+    "bluebird": "^3.7.2",
     "chalk": "^2.4.2",
     "dotenv": "^8.2.0",
     "error-factory": "^0.1.6",
