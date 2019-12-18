@@ -5,19 +5,22 @@ const { Discovery } = require('./auth')
 
 const Auth = (server, redis, axios) => {
   server.route({
-    method: 'POST',
-    path: '/auth/callback/{code}',
+    method: 'GET',
+    path: '/auth/callback',
     handler: async (req, res) => {
-      return ok(res, { authorizeURL: await Callback(redis, axios, req.params.code) })
+      console.log(req)
+      return ok(res, { authorizeURL: await Callback(redis, axios, req.payload.code) })
     },
     options: {
       description: 'OAUTH2 Authorization Code Callback',
       notes: ['201', '500'],
       tags: ['api'],
       validate: {
-        params: {
-          code: Joi.string()
-        }
+        query: Joi.object({
+          code : Joi.string()
+                  .required()
+                  .description('the id for the todo item'),
+        })
       }
     }
   })
