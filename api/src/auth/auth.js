@@ -49,4 +49,4 @@ const GetAuthUrl = async (response, redis, axios) => {
   }
 }
 
-module.exports = { Discovery, Callback, GetAuth }
+module.exports = { Discovery, Callback, GetAuthUrl }
