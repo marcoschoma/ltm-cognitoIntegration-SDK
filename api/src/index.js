@@ -4,8 +4,12 @@ const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
 const HapiSwagger = require('hapi-swagger')
-const Redis = require('redis')
+const redis = require('redis')
 const axios = require('axios')
+const bluebird = require('bluebird')
+
+bluebird.promisifyAll(redis.RedisClient.prototype)
+bluebird.promisifyAll(redis.Multi.prototype)
 
 const chalk = require('./config/chalk')
 const { PORT } = require('./config/config')
@@ -57,7 +61,7 @@ const startupError = err => {
   chalk.error('🚨 Error bootstrapping app!', err)
 }
 
-Cache(Redis, 3000)
+Cache(redis, 3000)
   .then(client => {
     Start().then(server => {
       Auth(server, client, axios)

@@ -1,7 +1,6 @@
 //const Joi = require('@hapi/joi')
-const { ok } = require('../config/response')
 
-const { Discovery } = require('./auth')
+const { GetAuthUrl } = require('./auth')
 
 const Auth = (server, redis, axios) => {
   // server.route({
@@ -28,7 +27,7 @@ const Auth = (server, redis, axios) => {
     method: 'GET',
     path: '/auth',
     handler: async (req, res) => {
-      return ok(res, { authorizeURL: await Discovery(redis, axios) })
+      return await GetAuthUrl(res, redis, axios)
     },
     options: {
       description: 'Get the Cognito Authorization URL',

@@ -1,57 +1,57 @@
-const errorFactory = require("error-factory");
+const errorFactory = require('error-factory')
 
-const Joi = require("@hapi/joi");
-const ValidationSchema = require("./validation_schema");
+const Joi = require('@hapi/joi')
+const ValidationSchema = require('./validation_schema')
 
-const MomentBrazil = require("moment-timezone");
+const MomentBrazil = require('moment-timezone')
 
-const Rating = require("./schema");
+const Rating = require('./schema')
 
-const { created, ok, badRequestWithMessage } = require("../config/response");
+const { created, ok, badRequestWithMessage } = require('../config/response')
 
-const RatingError = errorFactory("InvalidRating", [
-  ("message", "details", "annotate", "_object")
-]);
+const RatingError = errorFactory('InvalidRating', [
+  ('message', 'details', 'annotate', '_object')
+])
 
 const validateRating = rating => {
-  const { error, value } = Joi.validate(rating, ValidationSchema);
+  const { error, value } = Joi.validate(rating, ValidationSchema)
 
   if (error) {
-    const { message, details, annotate } = error;
-    throw RatingError(message, details, annotate);
+    const { message, details, annotate } = error
+    throw RatingError(message, details, annotate)
   }
 
-  if (rating == null) throw RatingError("invalid request", "", "");
+  if (rating == null) throw RatingError('invalid request', '', '')
 
-  return value;
-};
+  return value
+}
 
 const Create = kafka => async (rating, res) => {
   try {
-    let valid = validateRating(rating);
+    let valid = validateRating(rating)
 
     let vote = new Rating({
       ...rating,
-      date: MomentBrazil.tz("America/Sao_Paulo").format()
-    });
+      date: MomentBrazil.tz('America/Sao_Paulo').format()
+    })
 
-    var result = await vote.save();
+    var result = await vote.save()
 
-    await kafka.send("rating-topic", { rating, correlation: result._id });
+    await kafka.send('rating-topic', { rating, correlation: result._id })
 
-    console.log(valid);
-    console.log(result);
+    console.log(valid)
+    console.log(result)
 
-    return created(res);
+    return created(res)
   } catch (error) {
-    badRequestWithMessage(res, error);
+    badRequestWithMessage(res, error)
   }
-};
+}
 
 const GetAll = res => {
   return Rating.find({})
     .then(data => ok(res, data))
-    .catch(err => badRequestWithMessage(res, err));
-};
+    .catch(err => badRequestWithMessage(res, err))
+}
 
-module.exports = { Create, GetAll };
+module.exports = { Create, GetAll }
