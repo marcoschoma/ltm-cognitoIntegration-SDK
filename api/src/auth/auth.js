@@ -18,23 +18,33 @@ const Discovery = async (redis, axios) => {
 
     return data
   } catch (error) {
+    console.error(error.message)
     throw AuthError(error)
   }
 }
 
-const Callback = async (redis, axios, code) => {
-  const discovery = await Discovery(redis, axios)
-  console.log(discovery)
-  var result = await axios.post(
-    discovery.token_endpoint,
-    {
-      code: code,
-      grant_type: 'authorization_code',
-      redirect_uri: process.env.APP_AUTH_CODE_CALLBACK
-    }
-  )
-  return result
-  //token_endpoint_auth_methods_supported: ['client_secret_basic', '']
+const Callback = async (response, redis, axios, code, state) => {
+  try {
+    const discovery = await Discovery(redis, axios)
+
+    var result = await axios.post(
+      discovery.token_endpoint,
+      {
+        code: code,
+        state: state,
+        client_id: process.env.APP_AUTH_CODE_CLIENT_ID,
+        client_secret: process.env.APP_AUTH_CODE_CLIENT_SECRET,
+        grant_type: process.env.APP_AUTH_CODE_GRANT_TYPE,
+        redirect_uri: process.env.APP_AUTH_CODE_CALLBACK
+      }
+    )
+
+    return result
+
+  } catch (error) {
+    console.error(error.message)
+    return badRequestWithMessage(response, error)
+  }
 }
 
 const GetAuthUrl = async (response, redis, axios) => {
@@ -45,6 +55,7 @@ const GetAuthUrl = async (response, redis, axios) => {
       auth: `${authorization_endpoint}?scope=${process.env.APP_AUTH_CODE_SCOPES}&response_type=code&client_id=${process.env.APP_AUTH_CODE_CLIENT_ID}&redirect_uri=${process.env.APP_AUTH_CODE_CALLBACK}&state=${state}`
     })
   } catch (error) {
+    console.error(error.message)
     return badRequestWithMessage(response, error)
   }
 }

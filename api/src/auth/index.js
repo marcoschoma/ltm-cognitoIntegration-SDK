@@ -1,14 +1,13 @@
 const Joi = require('@hapi/joi')
 const { ok } = require('../config/response')
-const { Callback, Discovery, GetAuthUrl } = require('./auth')
+const { Callback, GetAuthUrl } = require('./auth')
 
 const Auth = (server, redis, axios) => {
   server.route({
     method: 'GET',
     path: '/auth/callback',
     handler: async (req, res) => {
-      console.log(req)
-      return ok(res, { authorizeURL: await Callback(redis, axios, req.query.code) })
+      return ok(res, { authorizeURL: await Callback(res, redis, axios, req.query.code, req.query.state) })
     },
     options: {
       description: 'OAUTH2 Authorization Code Callback',
@@ -19,6 +18,9 @@ const Auth = (server, redis, axios) => {
           code : Joi.string()
                   .required()
                   .description('Authorization Code'),
+          state : Joi.string()
+                  .required()
+                  .description('State of authentication')
         })
       }
     }
