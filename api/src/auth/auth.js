@@ -61,3 +61,7 @@ const GetAuthUrl = async (response, redis, axios) => {
 }
 
 module.exports = { Discovery, Callback, GetAuthUrl }
+
+
+//criar endpoint de validar o token
+//bater na showcase do MKP usando o token

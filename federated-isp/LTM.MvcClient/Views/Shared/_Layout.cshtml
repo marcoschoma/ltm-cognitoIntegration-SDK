@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @if(User != null && User.Identity.IsAuthenticated)
+    {
+        <div>@Html.ActionLink("Logout", "Logout", "Home")</div>
+    }
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
