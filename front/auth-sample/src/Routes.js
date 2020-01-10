@@ -4,15 +4,6 @@ import CognitoUserManager from './CognitoUserManager';
 
 let isAuthenticated = false;
 
-// const configs = {
-// 	authority:
-// 		'http://auth.padrao-qa2.webpremios.digital/.well-known/openid-configuration',
-// 	client_id: '4lunmtr2cn2plb2sspavoakuk5',
-// 	redirect_uri: 'http://localhost:3000/auth/callback',
-// 	response_type: 'token id_token',
-// 	scope: 'openid profile email webpremios.campaigns/1',
-// 	post_logout_redirect_uri: 'http://localhost:3000/'
-// };
 const configs = {
 	authority: process.env.REACT_APP_COGNITO_DISCOVERY_ENDPOINT,
 	client_id: process.env.REACT_APP_AUTH_CLIENT_ID,
