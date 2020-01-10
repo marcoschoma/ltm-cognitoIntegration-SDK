@@ -17,6 +17,7 @@ const { Cache } = require('./config/redis')
 
 const Home = require('./home')
 const Auth = require('./auth')
+const OpenIdClient = require('./openid-client')
 
 console.log(`Cognito Integration - ${process.env.NAME} ${process.env.VERSION}`)
 
@@ -65,6 +66,7 @@ Cache(redis, 3000)
   .then(client => {
     Start().then(server => {
       Auth(server, client, axios)
+      OpenIdClient(server, client)
       Home(server)
     })
   })

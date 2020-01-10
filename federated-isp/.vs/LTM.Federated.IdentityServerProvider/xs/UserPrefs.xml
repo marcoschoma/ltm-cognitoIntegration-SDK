@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="Multiple Projects">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LTM.MvcClient/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="LTM.MvcClient/Startup.cs" Line="42" Column="20" />
+      <File FileName="LTM.IdentityServerMVC/Startup.cs" Line="19" Column="61" />
+      <File FileName="LTM.IdentityServerMVC/IdentityServerConfig.cs" Line="33" Column="61" />
+      <File FileName="LTM.IdentityServerMVC/Quickstart/Account/AccountController.cs" Line="1" Column="1" />
+      <File FileName="LTM.MvcClient/Views/Shared/_Layout.cshtml" Line="11" Column="41" />
+      <File FileName="LTM.MvcClient/Controllers/RestrictedController.cs" Line="1" Column="1" />
+      <File FileName="LTM.MvcClient/Controllers/HomeController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LTM.Federated.IdentityServerProvider" expanded="True">
+            <Node name="LTM.IdentityServerMVC" expanded="True">
+              <Node name="Quickstart" expanded="True">
+                <Node name="Account" expanded="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="LTM.MvcClient" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.LTM.IdentityServerMVC PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.LTM.MvcClient PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{7E18F980-97FE-4ED6-BB0B-73BEEAAD049A}" ItemName="LTM.IdentityServerMVC" ConfigurationId="Default" />
+        <StartupItem ItemId="{B7084421-9CE9-4A6B-AB9E-FBD7E28E1036}" ItemName="LTM.MvcClient" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

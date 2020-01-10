@@ -5,7 +5,7 @@ const { Callback, GetAuthUrl } = require('./auth')
 const Auth = (server, redis, axios) => {
   server.route({
     method: 'GET',
-    path: '/auth/callback',
+    path: '/auth-raw/callback',
     handler: async (req, res) => {
       return ok(res, { authorizeURL: await Callback(res, redis, axios, req.query.code, req.query.state) })
     },
@@ -28,7 +28,7 @@ const Auth = (server, redis, axios) => {
 
   server.route({
     method: 'GET',
-    path: '/auth',
+    path: '/auth-raw',
     handler: async (req, res) => {
       return await GetAuthUrl(res, redis, axios)
     },
