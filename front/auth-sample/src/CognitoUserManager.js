@@ -22,5 +22,10 @@ class CognitoUserManager extends UserManager {
 		});
 	}
 }
-
 export default CognitoUserManager;
+// const createUserManager = settings =>
+// 	new CognitoUserManager({
+// 		...settings
+// 	});
+
+// export default createUserManager;
