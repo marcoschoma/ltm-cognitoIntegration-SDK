@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{84A9FBBB-B305-4C50-8BA3-E8E9FF6D9703}|Default">
+  <MonoDevelop.Ide.ItemProperties.Ext.IdentityServerMVC PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../federated-isp/LTM.IdentityServerMVC/IdentityServerConfig.cs">
+    <Files>
+      <File FileName="AngularNetCoreTest/Clients/ExternalAPIClient.cs" Line="65" Column="26" />
+      <File FileName="../federated-isp/LTM.MvcClient/Startup.cs" Line="46" Column="40" />
+      <File FileName="../federated-isp/LTM.IdentityServerMVC/Startup.cs" Line="1" Column="1" />
+      <File FileName="../federated-isp/LTM.IdentityServerMVC/IdentityServerConfig.cs" Line="31" Column="40" />
+      <File FileName="AngularNetCoreTest/ClientApp/src/app/fetch-data/fetch-data.component.html" Line="7" Column="1" />
+      <File FileName="AngularNetCoreTest/ClientApp/src/app/fetch-data/fetch-data.component.ts" Line="12" Column="52" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LTM.CustomAuthSample" expanded="True" />
+          <Node name="LTM.Federated.IdentityServerProvider" expanded="True">
+            <Node name="LTM.IdentityServerMVC" expanded="True">
+              <Node name="IdentityServerConfig.cs" selected="True" />
+            </Node>
+            <Node name="LTM.MvcClient" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.AngularNetCoreTest PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{84A9FBBB-B305-4C50-8BA3-E8E9FF6D9703}" ItemName="AngularNetCoreTest" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

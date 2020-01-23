@@ -13,14 +13,18 @@ namespace LTM.IdentityServerMVC
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource> {
-                new IdentityResources.OpenId (),
-                new IdentityResources.Profile (),
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResources.Phone(),
+                new IdentityResource("webpremios", new string [] { "campaign_id", "participant_id" })
             };
         }
 
         // clients want to access resources (aka scopes)
         public static IEnumerable<Client> GetClients()
         {
+            var secret = new Secret("ltm-secret".ToSha256(), "isp-secret");
             // client credentials client
             return new List<Client> {
                 // OpenID Connect implicit flow client (MVC)
@@ -30,17 +34,20 @@ namespace LTM.IdentityServerMVC
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireConsent = false,
                     RedirectUris = {
-                        "https://localhost:8001/signin-oidc"
+                        "https://localhost:8001/signin-oidc",
+                        "https://ltmcognitopocidentityserver.azurewebsites.net/signin-oidc",
+                        "https://ltm-ragnarok-tenants-qa2-1.auth.us-east-1.amazoncognito.com/oauth2/idpresponse"
                     },
                     PostLogoutRedirectUris = {
-                        "https://localhost:8001/signout-callback-oidc"
+                        "https://localhost:8001/signout-callback-oidc",
+                        "https://ltmcognitopocidentityserver.azurewebsites.net/signout-callback-oidc"
                     },
-                    ClientSecrets = { new Secret ("ltm-secret".ToSha256(), "isp-secret") },
+                    ClientSecrets = { secret },
                     AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        IdentityServerConstants.StandardScopes.Address,
+                        IdentityServerConstants.StandardScopes.Phone
                     }
                 }
             };
@@ -60,6 +67,8 @@ namespace LTM.IdentityServerMVC
                         new Claim (JwtClaimTypes.GivenName, "Integration Test"),
                         new Claim (JwtClaimTypes.Email, "integration.text@ltm.digital"),
                         new Claim (JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
+                        new Claim ("campaign_id", "1", ClaimValueTypes.String),
+                        new Claim ("participant_id", "123", ClaimValueTypes.String)
                     }
                 }
             };

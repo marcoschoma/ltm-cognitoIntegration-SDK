@@ -64,3 +64,6 @@ typings/
 
 .DS_Store
 .vscode/settings.json
+
+**/bin
+**/obj

@@ -25,20 +25,30 @@ namespace LTM.MvcClient
             services
                 .AddAuthentication(options =>
                 {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
                 })
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+                .AddCookie()
+                .AddOpenIdConnect(options =>
                 {
-                    options.Authority = "https://localhost:5001";
-                    options.RequireHttpsMetadata = false;
-                    options.ClientId = "ltm";
-                    options.SaveTokens = true;
-                    options.ClientSecret = "ltm-secret";
+                    options.MetadataAddress = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_II8KXhipn/.well-known/openid-configuration";
                     options.ResponseType = OpenIdConnectResponseType.Code;
-                    options.Scope.Add("openid");
-                    options.Scope.Add("profile");
+                    options.ClientId = "5lta3v67n27qb71s55k5lq3lhi";
+                    options.ClientSecret = "1s0r42ib6mfil67j8ntmk5mksudd7sbf226i0tv8phj43o1638am";
+                    //options.SaveTokens = true;
+                    //local
+                    // options.Authority = "https://localhost:5001";
+                    // options.ClientId = "ltm";
+                    // options.ClientSecret = "ltm-secret";
+                    //cognito
+                    //CDJvU7q+m9iNc9mrTvx2wC7GM8IdtTtk1Fg+dv7D9Cs=
+                    //options.Authority = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_II8KXhipn";
+                    
+                    
+                    //options.Scope.Add("openid");
+                    //options.Scope.Add("profile");
+                    //options.UsePkce = false;
                 });
             services.AddAuthorization();
         }
